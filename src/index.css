@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.calorieTrackerBg {
+  background-image: url(assets/bg.svg);
+  background-size: contain;
+}
+.formBg {
+  background-image: url(assets/bg_form.svg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom center;
+}
