@@ -1,12 +1,12 @@
 import { categories } from "../data/categories";
 import { Activity } from "../interfaces/activityInterface";
+import useActivities from "../hooks/useActivities";
 
 interface formProps {
   setNewActivity: React.Dispatch<React.SetStateAction<Activity>>;
   newActivity: Activity;
   newActivityIsValid: boolean;
   submitNewActivity: (e: React.FormEvent<HTMLFormElement>) => void;
-  selectedActivityId: string;
   unselectActivity: () => void;
 }
 
@@ -15,9 +15,9 @@ const Form = ({
   setNewActivity,
   newActivityIsValid,
   submitNewActivity,
-  selectedActivityId,
   unselectActivity,
 }: formProps) => {
+  const { state } = useActivities();
   return (
     <section className="formBg py-20 px-5">
       <div className="max-w-4xl mx-auto">
@@ -80,7 +80,7 @@ const Form = ({
             }`}
             disabled={!newActivityIsValid}
           />
-          {selectedActivityId && (
+          {state.activeId && (
             <input
               type="submit"
               className="mt-5 bg-amber-400 hover:bg-amber-500 p-3 font-bold uppercase text-white w-full cursor-pointer rounded-full border-amber-500 shadow-md"

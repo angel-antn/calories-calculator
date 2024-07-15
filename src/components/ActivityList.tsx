@@ -1,27 +1,26 @@
 import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/24/outline";
-import { ActivityState } from "../reducers/activityReducer";
 import { Category } from "../interfaces/categoryInterface";
+import useActivities from "../hooks/useActivities";
 
 interface ActivityListProps {
-  activities: ActivityState["activities"];
   getCategoryName: (category: Category["id"]) => string;
   selectActivity: (activityId: string) => void;
   deleteActivity: (activityId: string) => void;
 }
 
 export const ActivityList = ({
-  activities,
   getCategoryName,
   selectActivity,
   deleteActivity,
 }: ActivityListProps) => {
+  const { state } = useActivities();
   return (
     <section className="p-10 mx-auto max-w-4xl">
       <h2 className="text-4xl font-bold text-gray-500 text-center mb-10">
         Comida y Actividades
       </h2>
 
-      {activities.length === 0 && (
+      {state.activities.length === 0 && (
         <div className="border-4 border-gray-200 border-dashed  rounded-lg">
           <p className="text-center text-gray-400 text-xl md:text-2xl px-5 md:px-20 py-10">
             Registra nuevas actividades para llevar el control de tus calorias
@@ -29,7 +28,7 @@ export const ActivityList = ({
         </div>
       )}
 
-      {activities.map((activity) => (
+      {state.activities.map((activity) => (
         <div
           key={activity.id}
           className="px-5 py-10 bg-white mt-5 flex flex-col md:flex-row justify-between rounded-lg shadow-xl"

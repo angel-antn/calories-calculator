@@ -1,21 +1,15 @@
-import { useEffect, useMemo, useReducer, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
 import { Activity } from "../interfaces/activityInterface";
-import {
-  ActivityActions,
-  ActivityState,
-  activityReducer,
-  initialState,
-} from "../reducers/activityReducer";
 
 import { categories } from "../data/categories";
+import useActivities from "./useActivities";
 
 export const useCaloriesCalc = () => {
-  const [activitiesState, activitiesDispatch] = useReducer<
-    React.Reducer<ActivityState, ActivityActions>
-  >(activityReducer, initialState);
+  const { state: activitiesState, dispatch: activitiesDispatch } =
+    useActivities();
 
   const newActivityInitialState: Activity = {
     id: uuidv4(),

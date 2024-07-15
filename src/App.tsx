@@ -10,7 +10,6 @@ function App() {
     setNewActivity,
     newActivityIsValid,
     submitNewActivity,
-    activitiesState,
     getCategoryName,
     selectActivity,
     unselectActivity,
@@ -27,12 +26,10 @@ function App() {
         setNewActivity={setNewActivity}
         newActivityIsValid={newActivityIsValid}
         submitNewActivity={submitNewActivity}
-        selectedActivityId={activitiesState.activeId}
         unselectActivity={unselectActivity}
       />
       <CalorieTracker totalCalories={totalCalories} />
       <ActivityList
-        activities={activitiesState.activities}
         getCategoryName={getCategoryName}
         selectActivity={selectActivity}
         deleteActivity={deleteActivity}
